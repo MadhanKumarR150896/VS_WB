@@ -7,7 +7,9 @@ export const SubmitButton = () => {
         justifyContent: "center",
       }}
     >
-      <button type="submit">Submit</button>
+      <button style={{ backgroundColor: "#000", color: "#fff" }} type="submit">
+        Submit
+      </button>
     </div>
   );
 };

@@ -17,8 +17,8 @@ export const useStore = create((set, get) => ({
       newIDs[type] = 0;
     }
     newIDs[type] += 1;
+
     set({ nodeIDs: newIDs });
-    console.log(newIDs);
     return `${type}-${newIDs[type]}`;
   },
   addNode: (node) => {
@@ -49,11 +49,17 @@ export const useStore = create((set, get) => ({
       ),
     });
   },
-  updateNodeField: (nodeId, fieldName, fieldValue) => {
+  updateNodeData: (nodeId, fieldName, fieldValue) => {
     set({
       nodes: get().nodes.map((node) => {
         if (node.id === nodeId) {
-          node.data = { ...node.data, [fieldName]: fieldValue };
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              [fieldName]: fieldValue,
+            },
+          };
         }
 
         return node;

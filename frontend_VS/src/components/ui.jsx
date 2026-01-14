@@ -2,16 +2,17 @@ import "reactflow/dist/style.css";
 import { useState, useRef, useCallback } from "react";
 import ReactFlow, { Controls, Background, MiniMap } from "reactflow";
 import { useStore } from "../utils/store.js";
-import { shallow } from "zustand/shallow";
+import { useShallow } from "zustand/shallow";
 import { GenericNode } from "../utils/genericNode.jsx";
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
 const nodeTypes = {
-  customInput: GenericNode,
-  llm: GenericNode,
-  customOutput: GenericNode,
-  text: GenericNode,
+  inputNode: GenericNode,
+  llmNode: GenericNode,
+  outputNode: GenericNode,
+  textNode: GenericNode,
+  emailNode: GenericNode,
 };
 
 const selector = (state) => ({
@@ -24,6 +25,27 @@ const selector = (state) => ({
   onConnect: state.onConnect,
 });
 
+const defaultHandle = (type) => {
+  let handle = {
+    inputNode: { source: ["output"], target: [] },
+    textNode: { source: ["output"], target: [] },
+    outputNode: { source: [], target: ["input"] },
+    emailNode: { source: [], target: ["input"] },
+    llmNode: { source: ["output"], target: ["input", "input"] },
+  };
+
+  return handle[type];
+};
+
+const getInitNodeData = (nodeID, type) => {
+  let nodeData = {
+    id: nodeID,
+    nodeType: `${type}`,
+    handle: defaultHandle(type),
+  };
+  return nodeData;
+};
+
 export const PipelineUI = () => {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -35,12 +57,7 @@ export const PipelineUI = () => {
     onNodesChange,
     onEdgesChange,
     onConnect,
-  } = useStore(selector, shallow);
-
-  const getInitNodeData = (nodeID, type) => {
-    let nodeData = { id: nodeID, nodeType: `${type}` };
-    return nodeData;
-  };
+  } = useStore(useShallow(selector));
 
   const onDrop = useCallback(
     (event) => {
@@ -64,6 +81,7 @@ export const PipelineUI = () => {
         });
 
         const nodeID = getNodeID(type);
+
         const newNode = {
           id: nodeID,
           type,

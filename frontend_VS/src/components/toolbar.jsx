@@ -11,10 +11,11 @@ export const PipelineToolbar = () => {
           gap: "10px",
         }}
       >
-        <DraggableNode type="customInput" label="Input" />
-        <DraggableNode type="llm" label="LLM" />
-        <DraggableNode type="customOutput" label="Output" />
-        <DraggableNode type="text" label="Text" />
+        <DraggableNode type="inputNode" label="Input" />
+        <DraggableNode type="llmNode" label="LLM" />
+        <DraggableNode type="outputNode" label="Output" />
+        <DraggableNode type="textNode" label="Text" />
+        <DraggableNode type="emailNode" label="Email" />
       </div>
     </div>
   );
