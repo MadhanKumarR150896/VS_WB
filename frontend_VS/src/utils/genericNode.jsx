@@ -1,5 +1,6 @@
 import { useStore } from "./store.js";
 import { renderHandleMarkup } from "./handleMarkup.jsx";
+import { renderContentMarkup } from "./contentMarkup.jsx";
 
 export const GenericNode = ({ id, type, data }) => {
   const updateNodeData = useStore((state) => state.updateNodeData);
@@ -9,20 +10,26 @@ export const GenericNode = ({ id, type, data }) => {
     updateNodeData(id, "nodeName", event.target.value);
   };
 
-  const handleData = data?.handle ?? { source: [], target: [] };
-  const handleMarkup = renderHandleMarkup(id, handleData);
+  const handleMarkup = renderHandleMarkup(id, data, updateNodeData);
+  const contentMarkup = renderContentMarkup(type, data, updateNodeData);
 
   return (
-    <div style={{ width: "200px", height: "80px", border: "1px solid black" }}>
+    <div style={{ border: "1px solid black" }}>
       <div className={`${type}`}>
         <span>{type}</span>
       </div>
       <div className={`${type}-name`}>
         <label>
           Name:
-          <input type="text" value={nodeName} onChange={onNameChange} />
+          <input
+            className="nodrag nowheel"
+            type="text"
+            value={nodeName}
+            onChange={onNameChange}
+          />
         </label>
       </div>
+      <div>{contentMarkup}</div>
       {handleMarkup}
     </div>
   );

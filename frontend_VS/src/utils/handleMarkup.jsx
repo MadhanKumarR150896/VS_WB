@@ -1,7 +1,9 @@
 import { Handle, Position } from "reactflow";
 
-export const renderHandleMarkup = (id, handleData) => {
-  return Object.entries(handleData).map(([handleType, handles]) => {
+export const renderHandleMarkup = (id, data) => {
+  const handleData = data?.handle ?? { source: [], target: [] };
+
+  return Object.entries(handleData).flatMap(([handleType, handles]) => {
     const handlePosition =
       handleType === "source" ? Position.Right : Position.Left;
     return handles.map((handleName, index) => {
