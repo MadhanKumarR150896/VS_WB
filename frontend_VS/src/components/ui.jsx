@@ -116,6 +116,7 @@ export const PipelineUI = () => {
           proOptions={proOptions}
           snapGrid={[gridSize, gridSize]}
           connectionLineType="smoothstep"
+          className="nowheel"
         >
           <Background color="#000" gap={gridSize} />
           <Controls />

@@ -5,13 +5,13 @@ import { renderContentMarkup } from "./contentMarkup.jsx";
 export const GenericNode = ({ id, type, data }) => {
   const updateNodeData = useStore((state) => state.updateNodeData);
 
-  const nodeName = data?.nodeName ?? id.replace(`${type}-`, `${type}_`);
+  const nodeName = data?.name ?? id.replace(`${type}-`, `${type}_`);
   const onNameChange = (event) => {
-    updateNodeData(id, "nodeName", event.target.value);
+    updateNodeData(id, "name", event.target.value);
   };
 
   const handleMarkup = renderHandleMarkup(id, data, updateNodeData);
-  const contentMarkup = renderContentMarkup(type, data, updateNodeData);
+  const contentMarkup = renderContentMarkup(id, type, data, updateNodeData);
 
   return (
     <div style={{ border: "1px solid black" }}>
