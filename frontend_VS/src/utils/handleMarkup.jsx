@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { Handle, Position } from "reactflow";
 
-export const renderHandleMarkup = (id, data) => {
+export const RenderHandleMarkup = memo(({ id, data }) => {
   const handleData = data?.handle ?? { source: [], target: [] };
 
   return Object.entries(handleData).flatMap(([handleType, handles]) => {
@@ -21,4 +22,4 @@ export const renderHandleMarkup = (id, data) => {
       );
     });
   });
-};
+});

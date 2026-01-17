@@ -1,4 +1,4 @@
-export const renderOutputNode = (id, data, dataMode, onModeChange) => (
+export const RenderOutputNode = ({ id, data, dataMode, onModeChange }) => (
   <>
     <label>
       Format:

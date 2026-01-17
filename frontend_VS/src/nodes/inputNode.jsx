@@ -1,12 +1,14 @@
-export const renderInputNode = (
+import TextareaAutosize from "react-textarea-autosize";
+
+export const RenderInputNode = ({
   id,
   data,
   updateNodeData,
   dataMode,
   onModeChange,
   dataText,
-  onTextChange
-) => (
+  onTextChange,
+}) => (
   <>
     <label>
       Format:
@@ -23,11 +25,14 @@ export const renderInputNode = (
       {dataMode === "text" && (
         <label>
           Input:
-          <textarea
+          <TextareaAutosize
+            style={{ width: "100%", height: "auto" }}
             value={dataText}
             onChange={onTextChange}
             className="nodrag nowheel"
-          ></textarea>
+            minRows={3}
+            maxRows={10}
+          />
         </label>
       )}
       {dataMode === "file" && (

@@ -1,10 +1,14 @@
-export const renderTextNode = (dataText, onTextChange) => (
+import TextareaAutosize from "react-textarea-autosize";
+
+export const RenderTextNode = ({ dataText, onTextChange }) => (
   <label>
     Input:
-    <textarea
+    <TextareaAutosize
       value={dataText}
       onChange={onTextChange}
       className="nodrag nowheel"
-    ></textarea>
+      minRows={3}
+      maxRows={10}
+    />
   </label>
 );

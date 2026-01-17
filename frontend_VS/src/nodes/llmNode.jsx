@@ -1,10 +1,12 @@
-export const renderLLMNode = (
+import TextareaAutosize from "react-textarea-autosize";
+
+export const RenderLLMNode = ({
   id,
   data,
   updateNodeData,
   dataText,
-  onTextChange
-) => (
+  onTextChange,
+}) => (
   <>
     <label>
       Model:
@@ -22,11 +24,13 @@ export const renderLLMNode = (
     <div>
       <label>
         Prompt:
-        <textarea
+        <TextareaAutosize
           value={dataText}
           onChange={onTextChange}
           className="nodrag nowheel"
-        ></textarea>
+          minRows={3}
+          maxRows={10}
+        />
       </label>
     </div>
   </>
