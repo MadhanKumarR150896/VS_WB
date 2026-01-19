@@ -27,18 +27,18 @@ This project was developed to solve the challenge of creating a scalable, user-f
 
 1. Navigate to the `frontend` directory:
 
-cd frontend
-npm install
-npm run dev
+- cd frontend
+- npm install
+- npm run dev
 
 2. Navigate to the `backend` directory:
 
-cd backend
-python -m venv venv
-venv\Scripts\activate - To cctivate the virtual environment on Windows
-source venv/bin/activate - To cctivate the virtual environment on Windows
-pip install -r requirements.txt
-uvicorn main:app --reload
+- cd backend
+- python -m venv venv
+- venv\Scripts\activate - To activate the virtual environment on Windows
+- source venv/bin/activate - To activate the virtual environment on MacOS
+- pip install -r requirements.txt
+- uvicorn main:app --reload
 
 ## Author
 
