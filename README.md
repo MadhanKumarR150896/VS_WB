@@ -44,3 +44,9 @@ This project was developed to solve the challenge of creating a scalable, user-f
 
 - GitHub: [@MadhanKumarR150896](https://github.com/MadhanKumarR150896)
 - LinkedIn: [@Madhan Kumar Ranganathan](https://www.linkedin.com/in/madhan-kumar-ranganathan-003359271/)
+
+## Screenshots
+
+|                       Node Types                       |                         DAG Validation                         |
+| :----------------------------------------------------: | :------------------------------------------------------------: |
+| ![Node Types](./frontend/public/assets/Node_Types.png) | ![DAG Validation](./frontend/public/assets/DAG_Validation.png) |
